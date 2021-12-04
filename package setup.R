@@ -1,0 +1,10 @@
+install.packages("here")
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("fst")
+install.packages("openxlsx")
+install.packages("httr")
+install.packages("readr")
+install.packages("rstudioapi")
+install.packages("tidyr")
+

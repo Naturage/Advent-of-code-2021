@@ -7,4 +7,5 @@ install.packages("httr")
 install.packages("readr")
 install.packages("rstudioapi")
 install.packages("tidyr")
+install.packages("stringr")
 

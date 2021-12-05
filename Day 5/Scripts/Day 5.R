@@ -9,10 +9,10 @@ input <- get_input(day) %>% as.data.frame() %>% rename(raw_input = 1)
 
 vent_regex <- "((\\d+),(\\d+)) -> ((\\d+),(\\d+))"
 
-input <- input %>% mutate(vent_start_x = str_match(raw_input, vent_regex)[,3],
-                          vent_start_y = str_match(raw_input, vent_regex)[,4],
-                          vent_end_x   = str_match(raw_input, vent_regex)[,6],
-                          vent_end_y   = str_match(raw_input, vent_regex)[,7])
+input <- input %>% mutate(vent_start_x = str_match(raw_input, vent_regex)[,3] %>% as.numeric(),
+                          vent_start_y = str_match(raw_input, vent_regex)[,4] %>% as.numeric(),
+                          vent_end_x   = str_match(raw_input, vent_regex)[,6] %>% as.numeric(),
+                          vent_end_y   = str_match(raw_input, vent_regex)[,7] %>% as.numeric())
 
 write_out_vent_locs <- function(row, input){
   temp <- input %>% slice(row) %>% select(vent_start_x, vent_start_y, vent_end_x, vent_end_y)
@@ -46,5 +46,3 @@ vents_p1 <- lapply(1:nrow(input_p1), write_out_vent_locs, input = input_p1) %>% 
 vents_p2 <- lapply(1:nrow(input), write_out_vent_locs, input = input) %>% do.call("rbind",.)
 
 (vents_p2 %>% count(x,y) %>% filter(n > 1) %>% count())
-
-proc.time() - ptm

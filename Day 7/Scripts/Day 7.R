@@ -21,5 +21,3 @@ for (i in 0:5){
 }
 
 (min(score))
-
-get_input(7) %>% strsplit(split = ",") %>% unlist() %>% as.numeric() %>% {. - median(.)} %>% abs() %>% sum()

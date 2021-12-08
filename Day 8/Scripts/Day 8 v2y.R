@@ -21,8 +21,6 @@ resort_vec <- function(input){
 
 # Pt 2: this is where the fun begins.
 
-found_digits <- list()
-
 digit_solver <- function(digit_options){
   digit_options <- digit_options %>% unlist()
   

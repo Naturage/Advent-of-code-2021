@@ -4,6 +4,7 @@ library(httr)
 library(readr)
 library(tidyr)
 library(stringr)
+library(stringi)
 
 get_input <- function(day){
   suppressWarnings(session_id <- readLines(here("session.txt")))

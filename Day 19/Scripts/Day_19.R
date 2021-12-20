@@ -1,5 +1,3 @@
-ptm <- proc.time()
-
 source(here::here("common functions.R"))
 
 day <- 19
@@ -186,5 +184,3 @@ for (i in 1:(nrow(sensors)-1)){
 }
 
 (max_manhattan)
-
-ptm - proc.time()

@@ -1,6 +1,5 @@
-ptm <- proc.time()
-
 source(here::here("common functions.R"))
+options(scipen = 999)
 
 day <- 22
 
@@ -34,6 +33,15 @@ intersect_cubes <- function(total_cube_list, new_cube){
   filter(on_off != 0)
 }
 
+volume <- function(total_cube_list){
+  total_cube_list %>% 
+    mutate(volume = on_off * 
+             (xmax - xmin + 1) * 
+             (ymax - ymin + 1) *
+             (zmax - zmin + 1)) %>%
+    summarise(sum(volume)) %>% as.numeric()
+}
+
 # Pt 1 
 
 input_p1 <- input %>% 
@@ -48,15 +56,9 @@ for (i in 2:nrow(input_p1)){
   if (input_p1[i,"on_off"] == 1){
     total_cube_list <- rbind(total_cube_list, input_p1[i,])
   }
-  print(i)
 }
 
-(total_cube_list %>% 
-  mutate(volume = on_off * 
-           (xmax - xmin + 1) * 
-           (ymax - ymin + 1) *
-           (zmax - zmin + 1)) %>%
-  summarise(sum(volume)) %>% as.numeric())
+(volume(total_cube_list))
 
 # Pt 2
 
@@ -69,16 +71,6 @@ for (i in 2:nrow(input_p2)){
   if (input_p2[i,"on_off"] == 1){
     total_cube_list <- rbind(total_cube_list, input_p2[i,])
   }
-  print(i)
 }
 
-options(scipen = 999)
-
-(total_cube_list %>% 
-    mutate(volume = on_off * 
-             (xmax - xmin + 1) * 
-             (ymax - ymin + 1) *
-             (zmax - zmin + 1)) %>%
-    summarise(sum(volume)) %>% as.numeric())
-
-proc.time() - ptm
+(volume(total_cube_list))

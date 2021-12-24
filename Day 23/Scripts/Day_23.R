@@ -10,16 +10,14 @@ input <- tibble(room_a = "BDDC"    ,
                 hallway = "#######",
                 path = "",
                 price = 0)
-# ,
-                # price_list = "")
 
+# Map as I denote it:
 
-# input <- tibble(room_a = "#DDA"    , 
-#                 room_b = "CCDB"    ,
-#                 room_c = "ABAD"    ,
-#                 room_d = "####"    ,
-#                 hallway = "B###D##",
-#                 path = "A1,")
+#
+# 12.3.4.5.67
+#   A B C D
+#
+# So a turn A6 means top entry in room A is moving to hallway spot 6. Obviously, 6A means the opposite.
 
 all_possible_turns <-
 c(paste0("A",c(1:7)),
@@ -139,8 +137,7 @@ do_next_turn <- function(df){
     group_by(room_a, room_b, room_c, room_d, hallway) %>% 
     arrange(price) %>% 
     slice(1) %>% 
-    ungroup() #%>%
-    # mutate(price_list = paste0(price_list,price,","))
+    ungroup()
 }
 
 in_p2 <- input
@@ -150,3 +147,5 @@ for (i in 1:32){
   in_p2 <- in_p2 %>% do_next_turn()
   print(paste0("turn ",i,", different states: ", nrow(in_p2)))
 }
+
+(in_p2$price)

@@ -2,7 +2,7 @@ source(here::here("common functions.R"))
 
 day <- 23
 
-# Data input - my input for p2 is cursed and want to make that epxlicit.
+# Data input - my input for p2 is cursed and want to make that explicit.
 input <- tibble(room_a = "BDDC"    ,
                 room_b = "CCBD"    ,
                 room_c = "ABAD"    ,
@@ -134,8 +134,8 @@ do_next_turn <- function(df){
            ),
            price = price + movers_pricing * tot_distance) %>%
     select(-from, -to, -hallspot, -starts_with("room_top"), -next_turn, -distance, -moving_fellow, -tot_distance, -movers_pricing) %>%
-    group_by(room_a, room_b, room_c, room_d, hallway) %>% 
-    arrange(price) %>% 
+    group_by(room_a, room_b, room_c, room_d, hallway) %>%
+    arrange(price) %>%
     slice(1) %>% 
     ungroup()
 }
